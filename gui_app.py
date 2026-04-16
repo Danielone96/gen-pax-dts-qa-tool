@@ -68,7 +68,7 @@ class App(tk.Tk):
         ttk.Entry(input_frame, textvariable=self.man_data).grid(row=2, column=3, padx=5, pady=5, sticky="ew")
 
         # Riga 3
-        ttk.Label(input_frame, text="Voyager Club No.:").grid(row=3, column=0, padx=5, pady=5, sticky=tk.W)
+        ttk.Label(input_frame, text="Club No.:").grid(row=3, column=0, padx=5, pady=5, sticky=tk.W)
         self.man_voyager = tk.StringVar()
         ttk.Entry(input_frame, textvariable=self.man_voyager).grid(row=3, column=1, padx=5, pady=5, sticky="ew")
 
@@ -146,7 +146,7 @@ class App(tk.Tk):
         # Mappatura 'id_colonna' -> 'Testo Intestazione'
         headings = {
             "nome": "Nome", "cognome": "Cognome", "data_nascita": "Data Nascita", "sesso": "Sesso",
-            "nazionalita": "Naz. Gen.", "categoria": "Cat.", "voyagerclub_no": "Voyager Club No.", "membership": "Membership",
+            "nazionalita": "Naz. Gen.", "categoria": "Cat.", "voyagerclub_no": "Club No.", "membership": "Membership",
             "nationality_full": "Nazionalità", "place_of_birth": "Luogo Nascita", "document_number": "Doc. Numero",
             "date_of_issue": "Doc. Rilascio", "date_of_expiration": "Doc. Scadenza", "country_of_issue": "Doc. Paese",
             "address_1": "Indirizzo", "city": "Città", "country_of_residence": "Paese Residenza",
@@ -188,8 +188,8 @@ class App(tk.Tk):
 
     def create_voyager_treeview(self, parent_frame):
         # Treeview ridotto solo per Voyager Club
-        columns = ("nome", "cognome", "voyagerclub_no", "membership")
-        headings = {"nome": "Nome", "cognome": "Cognome", "voyagerclub_no": "Voyager Club No.", "membership": "Membership"}
+        columns = ("membership", "voyagerclub_no", "nome", "cognome")
+        headings = {"membership": "Membership", "voyagerclub_no": "Club No.", "nome": "Nome", "cognome": "Cognome"}
 
         tree = ttk.Treeview(parent_frame, columns=columns, show="headings")
         
@@ -197,8 +197,8 @@ class App(tk.Tk):
             tree.heading(col, text=text)
             tree.column(col, width=150, anchor=tk.W)
             
-        tree.column("voyagerclub_no", width=120, anchor=tk.CENTER)
         tree.column("membership", width=100, anchor=tk.CENTER)
+        tree.column("voyagerclub_no", width=120, anchor=tk.CENTER)
 
         scrollbar = ttk.Scrollbar(parent_frame, orient=tk.VERTICAL, command=tree.yview)        
         tree.configure(yscrollcommand=scrollbar.set)
@@ -357,22 +357,23 @@ class App(tk.Tk):
                     else:
                         p['nome'] = random.choice(home.first_names_m_us if in_sesso == 'M' else home.first_names_f_us)
 
-            # Sovrascrive le preferenze testuali forzate
-            if in_nome: p['nome'] = in_nome
-            if in_cognome: p['cognome'] = in_cognome
-            if in_voyager: p['voyagerclub_no'] = in_voyager
-            if in_membership: p['membership'] = in_membership
-            
-            # Gestione data forzata
-            if in_data:
-                fmt = "%d/%m/%Y" if naz == 'IT' else "%m/%d/%Y"
-                try:
-                    dt = datetime.strptime(in_data, fmt)
-                    p['data_nascita'] = dt.strftime(fmt) # Assicura la sintassi perfetta
-                    p['categoria'] = home.get_category_from_date(dt)
-                except ValueError:
-                    messagebox.showerror("Errore Data", f"Hai inserito una data non compatibile.\nFormato richiesto: {fmt} per {naz}")
-                    return
+            # Sovrascrive le preferenze testuali forzate SOLO per il primo passeggero
+            if i == 0:
+                if in_nome: p['nome'] = in_nome
+                if in_cognome: p['cognome'] = in_cognome
+                if in_voyager: p['voyagerclub_no'] = in_voyager
+                if in_membership: p['membership'] = in_membership
+                
+                # Gestione data forzata
+                if in_data:
+                    fmt = "%d/%m/%Y" if naz == 'IT' else "%m/%d/%Y"
+                    try:
+                        dt = datetime.strptime(in_data, fmt)
+                        p['data_nascita'] = dt.strftime(fmt) # Assicura la sintassi perfetta
+                        p['categoria'] = home.get_category_from_date(dt)
+                    except ValueError:
+                        messagebox.showerror("Errore Data", f"Hai inserito una data non compatibile.\nFormato richiesto: {fmt} per {naz}")
+                        return
 
             new_data.append(p)
 
@@ -534,7 +535,7 @@ class App(tk.Tk):
             if voy_no:
                 mem_type = row.get("membership", "")
                 if voy_filter == "Tutti" or voy_filter == mem_type:
-                    self.tree_voyager.insert("", tk.END, values=(row.get("nome"), row.get("cognome"), voy_no, mem_type))
+                    self.tree_voyager.insert("", tk.END, values=(mem_type, voy_no, row.get("nome"), row.get("cognome")))
 
 if __name__ == "__main__":
     app = App()

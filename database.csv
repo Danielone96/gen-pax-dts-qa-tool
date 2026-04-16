@@ -1,7 +1,8 @@
 nome,cognome,data_nascita,sesso,nazionalita,categoria,voyagerclub_no,membership,nationality_full,place_of_birth,document_number,date_of_issue,date_of_expiration,country_of_issue,address_1,city,country_of_residence,zip_code,prefix,mobile_number,email_address,emergency_prefix,emergency_phone,emergency_contact_name
-Francesco,Pirolli,17/06/1984,M,IT,A,2336032,,India,Moscow,WMSF143H2,18/04/2021,28/07/2030,India,931 Main St.,Rome,France,51497,+49,775426423,d.dicastro@nexsoft.it,+61,407150503,Antonio Marini
+Francesco,Pirolli,17/06/1984,M,IT,A,2336032,Gold,India,Moscow,WMSF143H2,18/04/2021,28/07/2030,India,931 Main St.,Rome,France,51497,49,775426423,d.dicastro@nexsoft.it,61,407150503,Antonio Marini
 Giovanni,Greco,18/04/2004,M,IT,A,,,Spain,Rome,YU950ZAEG,07/09/2023,10/03/2031,Spain,296 Main St.,New Delhi,Russia,38859,+44,933096323,d.dicastro@nexsoft.it,+61,627361303,Francesco Fontana
 Giulia,Romano,30/03/1978,F,IT,A,,,Egypt,Tokyo,LWJX1LL8X,09/01/2024,23/04/2028,Egypt,722 Maple St.,Sydney,Mexico,77274,+61,911926814,d.dicastro@nexsoft.it,+49,452027155,Alice Romano
 Giulia,Moretti,16/10/2023,F,IT,J,,,Spain,Sydney,YR6QZXVTS,25/10/2022,25/12/2029,Spain,16 Maple St.,Moscow,Italy,22593,+44,150959088,d.dicastro@nexsoft.it,+49,605846653,Roberta Ricci
 Antonio,Moretti,25/05/1994,M,IT,A,,,South Africa,Berlin,GECGVX6IN,01/11/2022,02/03/2029,South Africa,353 Main St.,New Delhi,China,83865,+44,297964125,d.dicastro@nexsoft.it,+55,941072736,Alice Esposito
 Roberta,Bianchi,29/11/1971,F,IT,A,,,Argentina,Sao Paulo,GFW0UCQJO,17/10/2022,05/12/2030,Argentina,567 Main St.,Moscow,Brazil,43831,+33,310631896,d.dicastro@nexsoft.it,+49,910510776,Elena Ferrari
+Raffaella,Laurenza,28/05/1947,F,IT,A,1131598,Silver,France,Toronto,4KBXC1TDS,17/01/2024,26/05/2034,France,291 Oak St.,Los Angeles,UK,30774,+86,368956029,d.dicastro@nexsoft.it,+91,202952911,Paola Esposito

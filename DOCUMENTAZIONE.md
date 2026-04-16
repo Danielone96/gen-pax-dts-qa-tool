@@ -1,6 +1,6 @@
 # Documentazione del Progetto - Gen_Pax_Dts da un idea di Davide Cardella.
 
-**Versione:** 1.4
+**Versione:** 1.5
 **Data:** Aggiornamento Corrente
 
 ## 1. Scopo del Progetto
@@ -10,7 +10,8 @@ Lo scopo di questo progetto è fornire un'applicazione desktop con interfaccia g
 ## 2. Funzionalità Principali
 
 - **Modalità di Input Unificata (Auto-Fill):** Permette di generare in blocco X passeggeri completamente casuali. Se l'utente compila solo parzialmente il modulo (es. imposta solo il nome), il programma compilerà autonomamente e casualmente tutti i campi restanti mantenendo la coerenza del genere.
-- **Campo Manuale Esclusivo:** È stato aggiunto il campo "Voyagerclub No." che viene salvato solo se inserito manualmente, rimanendo vuoto nella generazione casuale.
+- **Applicazione Intelligente dei Campi Forzati:** Inserendo dati manuali (es. Nome, Data, Club No., Membership) e richiedendo la generazione di *n* passeggeri, solo il **Passeggero 1** riceverà i dati forzati. I restanti *n-1* verranno generati in modo puramente casuale (evitando la creazione di "cloni").
+- **Gestione Voyager Club & Membership:** Aggiunto il campo "Club No." e un menu a tendina "Membership" (Classic, Silver, Gold, Diamond). È presente una **Tab dedicata** nell'archivio ("Voyager Club") per filtrare e visualizzare rapidamente i membri.
 - **Generazione Mirata per Età (Spinbox):** Tramite comode frecce direzionali è possibile decidere il numero totale dei record da generare e specificare quanti di essi devono essere minorenni (Junior/Infant).
 - **Generazione Dati Estesa:** Il sistema ora genera un set completo di dati anagrafici, includendo:
   - **Info Documento:** Numero, data di rilascio/scadenza, paese di rilascio.
@@ -26,6 +27,11 @@ Lo scopo di questo progetto è fornire un'applicazione desktop con interfaccia g
 - **Copia Rapida Silenziosa:** Cliccando col tasto destro del mouse su un record è possibile copiare la riga direttamente negli appunti del PC senza subire l'interruzione di popup e avvisi.
 - **Salvataggio Intelligente:** I dati vengono aggiunti al file `database.csv`. L'app migra automaticamente vecchi database sprovvisti della colonna 'Categoria' aggiornandoli silenziosamente.
 - **Tema Scuro Nativo di Default:** L'applicazione si avvia in modalità Dark Mode ad Alto Contrasto, per alleggerire lo stress oculare dell'utilizzatore. È presente un pulsante per passare alla versione chiara tradizionale.
+- **Estensione Chrome per Autofill (Data Injection):** 
+  - Compilazione isolata dei form per Pax 1 e Pax 2 all'interno della stessa pagina.
+  - Valori fissi per casi di test specifici (es. Cognome "Castro", email fissa).
+  - Funzione di simulazione inserimento istantaneo dei **Dati di Pagamento** (Mastercard, Expiry Date, CVV).
+- **Versionamento e Gestione Repository:** Inseriti file `.gitignore` e `README.md` per il tracciamento tramite Git e la pubblicazione su **GitHub**, essenziale per il portfolio QA.
 - **Guida Estensione Chrome:** È stato aggiunto un file `CHROME_EXTENSION_GUIDE.md` che spiega come creare un'estensione per l'autofill dei moduli web.
 ## 3. Struttura del Progetto
 
@@ -33,12 +39,12 @@ Il progetto è composto dai seguenti file:
 
 - **`gui_app.py`**:
   - Contiene il codice per l'interfaccia grafica creata con `tkinter`.
-  - Gestisce il Layout (incluso il nuovo campo `Voyagerclub No.`) e gli stili (inclusi i font bold per le etichette).
+  - Gestisce il Layout (inclusi i campi `Club No.` e `Membership`) e gli stili (inclusi i font bold per le etichette).
   - Aggiunge e gestisce le scrollbar orizzontali per le tabelle.
   - Popola dinamicamente le tabelle con tutti i nuovi campi.
   - Gestisce la funzione del menu contestuale per copiare i dati col mouse.
   - Gestisce la logica di eliminazione del record selezionato.
-  - Filtra il database chiamando i dati in sola-lettura.
+  - Filtra il database su due Tab distinte (Tutti i Clienti e Voyager Club).
 
 - **`home.py`**:
   - Contiene la logica di business del programma.
@@ -51,6 +57,8 @@ Il progetto è composto dai seguenti file:
 - **`database.csv`**:
   - File generato automaticamente al primo avvio.
   - Contiene i dati in formato CSV (Comma-Separated Values).
+
+- **`.gitignore`** e **`README.md`**: File di configurazione per il repository GitHub.
 
 - **`INSTALLAZIONE.md`**: Guida per l'installazione e l'avvio.
 - **`CHROME_EXTENSION_GUIDE.md`**: Guida per la creazione di un'estensione per l'autofill.
