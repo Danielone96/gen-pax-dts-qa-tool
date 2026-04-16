@@ -1,6 +1,6 @@
 # Documentazione del Progetto - Gen_Pax_Dts da un idea di Davide Cardella.
 
-**Versione:** 1.5
+**Versione:** 1.6
 **Data:** Aggiornamento Corrente
 
 ## 1. Scopo del Progetto
@@ -71,3 +71,10 @@ Questa documentazione dovrebbe essere mantenuta aggiornata ad ogni modifica sign
 - **Nuova Funzionalità?** Aggiungila alla sezione "Funzionalità Principali".
 - **Modifica a un file?** Aggiorna la sua descrizione nella "Struttura del Progetto".
 - **Cambiamento importante?** Potrebbe essere utile aggiornare la versione e la data all'inizio del documento.
+
+## 5. Cronologia delle Versioni (Changelog)
+
+* **v1.6:** Modificata l'estensione Chrome. Ora la generazione casuale dei dati per il Pax 2 eredita automaticamente la stessa nazionalità (Country of Residence / Nationality) generata casualmente per il Pax 1 tramite `chrome.storage.local`. Inserito Changelog.
+* **v1.5:** Applicazione forzata dei campi manuali solo sul Pax 1. Aggiunti campi Voyager Club e Membership con tab dedicata. Integrato `.gitignore` e `README.md` per GitHub. Aggiunto autofill pagamenti nell'estensione Chrome.
+* **v1.4:** Copia rapida silenziosa, eliminazione record, filtro di ricerca, tema scuro nativo e split screen archivio/recenti.
+* **v1.0 - 1.3:** Creazione core base, calcolo età dinamico, UI in Tkinter, logica salvataggio cumulativo su `database.csv`.
