@@ -31,4 +31,6 @@ Consulta i file di documentazione dedicati per i dettagli su come eseguire lo st
 * Documentazione Architetturale Completa
 
 ---
-*Progetto concepito e sviluppato da Davide Cardella come Custom QA Tool.*
+*Progetto concepito e sviluppato da Daniele di Castro come Custom QA Tool.*
+
+Ispirato da un idea di Davide Cardella.
